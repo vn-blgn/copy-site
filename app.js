@@ -12,7 +12,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use("/bundles", express.static(__dirname + "/bundles"));
 app.use("/Content", express.static(__dirname + "/Content"));
 
-app.get("/", urlencodedParser, function (request, response) {
+app.get("/", function (request, response) {
   response.sendFile(__dirname + "/index.html");
 });
 app.post("/index", urlencodedParser, function (request, response) {
@@ -38,6 +38,14 @@ ${request.body.phone_number}`,
   };
   mailer(message);
   response.sendFile(__dirname + "/thanks.html");
+});
+
+app.get("/Agreement.html", function (request, response) {
+  response.sendFile(__dirname + "/Agreement.html");
+});
+
+app.get("/Policy.html", function (request, response) {
+  response.sendFile(__dirname + "/Policy.html");
 });
 
 app.listen(port);
